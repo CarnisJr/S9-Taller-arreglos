@@ -394,10 +394,13 @@ public class Parqueadero {
 
     	for(int i = 0; i < puestos.length; i++) {
     		
-    		if(horaActual - puestos[i].darCarro().darHoraLlegada() > 8) {
+    		if(puestos[i].estaOcupado()) {
+    			
+				if(horaActual - puestos[i].darCarro().darHoraLlegada() > 8) {
 
-    			carroMasOchoHoras = puestos[i].darCarro();
-    			listaCarrosMasOchoHoras.add(carroMasOchoHoras);
+					carroMasOchoHoras = puestos[i].darCarro();
+					listaCarrosMasOchoHoras.add(carroMasOchoHoras);
+				}
     		}
     	}
 
@@ -425,9 +428,13 @@ public class Parqueadero {
     	
     	for(int i = 0; i < puestos.length; i++) {
     		
-    		if(horaActual - puestos[i].darCarro().darHoraLlegada() > 8) {
+    		
+    		if(puestos[i].estaOcupado()) {
+    			
+				if(horaActual - puestos[i].darCarro().darHoraLlegada() > 8) {
 
-    			flag = true;
+					flag = true;
+				}
     		}
     	}
 
@@ -440,10 +447,13 @@ public class Parqueadero {
     	
     	for(int i = 0; i < puestos.length; i++) {
     		
-    		if(horaActual - puestos[i].darCarro().darHoraLlegada() > 3) {
+    		if(puestos[i].estaOcupado()) {
     			
-    			listaCarros.add(puestos[i].darCarro());
-    		}    			
+				if(horaActual - puestos[i].darCarro().darHoraLlegada() > 3) {
+					
+					listaCarros.add(puestos[i].darCarro());
+				}    			
+    		}
     	}
 
     	return listaCarros;
@@ -456,16 +466,20 @@ public class Parqueadero {
     	
     	for(int i = 0; i < puestos.length; i++) {
     		
-    		auxPlacaCarro = puestos[i].darCarro().darPlaca();
-    		
-			for(int j = 0; j < puestos.length; j++) {
+    		if(puestos[i].estaOcupado()) {
+    			
+				auxPlacaCarro = puestos[i].darCarro().darPlaca();
 				
-				if(puestos[j].darCarro().darPlaca() == auxPlacaCarro) {
+				for(int j = 0; j < puestos.length; j++) {
 					
-					flag = true;
-					break;
-				}		
-			}
+					if(puestos[j].darCarro().darPlaca() == auxPlacaCarro) {
+						
+						flag = true;
+						break;
+					}		
+				}
+    			
+    		}
     	}
 
     	return flag;
@@ -478,9 +492,12 @@ public class Parqueadero {
     	
     	for(int i = 0; i < puestos.length; i++) {
     		
-    		if(horaActual - puestos[i].darCarro().darHoraLlegada() > 2) {
+    		if(puestos[i].estaOcupado()) {
+    			
+				if(horaActual - puestos[i].darCarro().darHoraLlegada() > 24) {
 
-    			flag = true;
+					flag = true;
+				}
     		}
     	}
 
